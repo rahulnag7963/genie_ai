@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   View,
   Image,
@@ -9,11 +9,10 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { MotiView } from "moti";
-import GradientText from "react-native-gradient-texts";
 import { useFonts } from "expo-font";
 import genie from "../assets/genie.png";
-
 import { NavigationProp } from "@react-navigation/native";
+import Intro from "./components/intro";
 
 const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
   useFonts({
@@ -34,14 +33,16 @@ const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
           transition={{ type: "timing", duration: 1500 }}
         >
           <View style={{ zIndex: 10 }}>
-            <GradientText
-              text={"GenieBox"}
-              fontSize={45}
-              width={420}
-              locations={{ x: 210, y: 65 }}
-              isGradientFill
-              gradientColors={["#ae8625", "#f9f295"]}
-            />
+            <Text
+              style={{
+                fontSize: 45,
+                fontFamily: "Queensides",
+                textAlign: "center",
+                marginBottom: 20,
+              }}
+            >
+              GenieBox
+            </Text>
             <Image
               source={genie}
               style={{
@@ -58,14 +59,7 @@ const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
               onPress={() => navigation.navigate("Message")}
               style={styles.button}
             >
-              <GradientText
-                text={"Play"}
-                fontSize={24}
-                width={420}
-                locations={{ x: 100, y: 40 }}
-                isGradientFill
-                gradientColors={["#ae8625", "#f9f295"]}
-              />
+              <Text style={styles.text}>Play</Text>
             </Pressable>
           </View>
         </MotiView>
@@ -105,7 +99,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: "Queensides",
     textAlign: "center",
-    lineHeight: 55,
+    lineHeight: 60,
   },
   oval: {
     width: 120,

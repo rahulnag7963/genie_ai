@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,8 +6,6 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
-  Modal,
-  Pressable,
   KeyboardAvoidingView,
 } from "react-native";
 import genie from "../assets/genie.png";
@@ -20,11 +18,9 @@ import {
 import arr from "../assets/arr.png";
 import user from "../assets/user.png";
 import { groqApi } from "./components/groqApi";
-import { MotiView } from "moti";
+import { MotiView, SafeAreaView } from "moti";
 import { generateRandomWord } from "./components/words";
 import { NavigationProp } from "@react-navigation/native";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
-import { opacity } from "react-native-redash";
 
 interface Msg {
   id: string;
@@ -89,7 +85,7 @@ const Message = ({ navigation }: { navigation: NavigationProp<any> }) => {
   });
   return (
     <GestureHandlerRootView>
-      <View style={Styles.container}>
+      <SafeAreaView style={Styles.container}>
         <LinearGradient
           colors={["#4333bd", "#7767f0", "#bfb8f5"]}
           style={Styles.gradient}
@@ -252,28 +248,28 @@ const Message = ({ navigation }: { navigation: NavigationProp<any> }) => {
             </View>
           </KeyboardAvoidingView>
         </LinearGradient>
-      </View>
-      {modalOpen && (
-        <View style={Styles.modal}>
-          <MotiView
-            from={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ type: "timing", duration: 1000 }}
-          >
-            <Text style={Styles.text2}>You Win!</Text>
-            <TouchableOpacity onPress={handlePlay} style={Styles.button2}>
-              <LinearGradient
-                colors={["#4333bd", "#7767f0", "#bfb8f5"]}
-                style={Styles.gradient2}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0.5 }}
-              >
-                <Text style={Styles.text2}>Play Again?</Text>
-              </LinearGradient>
-            </TouchableOpacity>
-          </MotiView>
-        </View>
-      )}
+        {modalOpen && (
+          <View style={Styles.modal}>
+            <MotiView
+              from={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ type: "timing", duration: 1000 }}
+            >
+              <Text style={Styles.text2}>You Win!</Text>
+              <TouchableOpacity onPress={handlePlay} style={Styles.button2}>
+                <LinearGradient
+                  colors={["#4333bd", "#7767f0", "#bfb8f5"]}
+                  style={Styles.gradient2}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0.5 }}
+                >
+                  <Text style={Styles.text2}>Play Again?</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </MotiView>
+          </View>
+        )}
+      </SafeAreaView>
     </GestureHandlerRootView>
   );
 };
