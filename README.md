@@ -1,4 +1,4 @@
-Genie Box
+##Genie Box
 
 An app developed in react native with the help of groq AI api calls.
 
