@@ -1,6 +1,6 @@
 const Groq = require('groq-sdk');
 const groq = new Groq({
-    apiKey: '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', dangerouslyAllowBrowser: true
+    apiKey: '', dangerouslyAllowBrowser: true
 });
 export const groqApi = async (msg: string, word: string) => {
 
